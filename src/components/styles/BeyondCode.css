@@ -1,0 +1,187 @@
+/* ── Beyond the Code Section ── */
+.beyond-section {
+  position: relative;
+  z-index: 1;
+  background-color: var(--backgroundColor);
+  padding: 80px 0 100px;
+}
+
+/* ── Header ── */
+.beyond-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.beyond-header h2 {
+  font-size: 70px;
+  font-weight: 500;
+  margin: 0 0 16px;
+}
+
+.beyond-header h2 span {
+  color: var(--accentColor);
+}
+
+.beyond-subtitle {
+  font-size: 18px;
+  font-weight: 300;
+  color: #8a8a8a;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* ── Grid ── */
+.beyond-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ── Card ── */
+.beyond-card {
+  position: relative;
+  padding: 32px 28px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+
+  /* Scroll reveal */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out,
+    background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition-delay: var(--card-delay);
+}
+
+.beyond-card-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.beyond-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* ── Glow effect ── */
+.beyond-card-glow {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 60px;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.beyond-card:hover .beyond-card-glow {
+  opacity: 0.15;
+}
+
+/* ── Card Top Row ── */
+.beyond-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.beyond-number {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.15);
+  font-family: "Geist", monospace;
+  letter-spacing: 1px;
+}
+
+.beyond-icon {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+.beyond-card:hover .beyond-icon {
+  opacity: 1;
+  filter: drop-shadow(0 0 12px currentColor);
+}
+
+/* ── Card Text ── */
+.beyond-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 10px;
+  color: #eae5ec;
+  letter-spacing: 0.3px;
+}
+
+.beyond-description {
+  font-size: 14px;
+  font-weight: 300;
+  color: #8a8a8a;
+  margin: 0;
+  line-height: 1.65;
+}
+
+.beyond-card:hover .beyond-description {
+  color: #b0b0b0;
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 1200px) {
+  .beyond-header h2 {
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .beyond-section {
+    padding: 60px 0 80px;
+  }
+
+  .beyond-header h2 {
+    font-size: 40px;
+  }
+
+  .beyond-header {
+    margin-bottom: 40px;
+  }
+
+  .beyond-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .beyond-card {
+    padding: 24px 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .beyond-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .beyond-subtitle {
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,209 @@
+/* ── Tech Grid Wrapper ── */
+.tech-grid-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ── Orbital Rings ── */
+.orbital-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(94, 234, 212, 0.12);
+  pointer-events: none;
+}
+
+.orbital-ring-1 {
+  width: 110%;
+  height: 70%;
+  top: 15%;
+  left: -5%;
+  transform: rotateX(65deg) rotateZ(0deg);
+  animation: orbit-spin 25s linear infinite;
+  border-color: rgba(94, 234, 212, 0.15);
+  box-shadow:
+    0 0 30px rgba(94, 234, 212, 0.05),
+    inset 0 0 30px rgba(94, 234, 212, 0.03);
+}
+
+.orbital-ring-2 {
+  width: 95%;
+  height: 55%;
+  top: 22%;
+  left: 2.5%;
+  transform: rotateX(60deg) rotateZ(30deg);
+  animation: orbit-spin-reverse 30s linear infinite;
+  border-color: rgba(139, 92, 246, 0.12);
+  box-shadow:
+    0 0 25px rgba(139, 92, 246, 0.04),
+    inset 0 0 25px rgba(139, 92, 246, 0.02);
+}
+
+.orbital-ring-3 {
+  width: 120%;
+  height: 80%;
+  top: 10%;
+  left: -10%;
+  transform: rotateX(70deg) rotateZ(-15deg);
+  animation: orbit-spin 35s linear infinite;
+  border-color: rgba(34, 211, 238, 0.08);
+  box-shadow:
+    0 0 20px rgba(34, 211, 238, 0.03),
+    inset 0 0 20px rgba(34, 211, 238, 0.02);
+}
+
+@keyframes orbit-spin {
+  from {
+    transform: rotateX(65deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(65deg) rotateZ(360deg);
+  }
+}
+
+@keyframes orbit-spin-reverse {
+  from {
+    transform: rotateX(60deg) rotateZ(30deg);
+  }
+  to {
+    transform: rotateX(60deg) rotateZ(-330deg);
+  }
+}
+
+/* ── Tech Grid ── */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* ── Tech Card ── */
+.tech-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+  animation: float-card 6s ease-in-out infinite;
+  animation-delay: var(--float-delay);
+  opacity: 0;
+  animation: card-appear 0.6s ease-out forwards, float-card 6s ease-in-out infinite;
+  animation-delay: var(--delay), var(--float-delay);
+}
+
+.tech-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(94, 234, 212, 0.3);
+  transform: translateY(-6px) scale(1.05);
+  box-shadow:
+    0 8px 32px rgba(94, 234, 212, 0.12),
+    0 0 0 1px rgba(94, 234, 212, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.tech-card-icon {
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 8px currentColor);
+  transition: filter 0.3s ease;
+}
+
+.tech-card:hover .tech-card-icon {
+  filter: drop-shadow(0 0 14px currentColor);
+}
+
+.tech-card-name {
+  font-size: 12px;
+  font-weight: 400;
+  color: #b0b0b0;
+  text-align: center;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.tech-card:hover .tech-card-name {
+  color: #ffffff;
+}
+
+/* ── Floating Animation ── */
+@keyframes float-card {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes card-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 1200px) {
+  .tech-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .tech-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .tech-card {
+    padding: 16px 8px;
+  }
+
+  .tech-card-icon {
+    font-size: 26px;
+  }
+
+  .tech-card-name {
+    font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .tech-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .tech-card {
+    padding: 14px 6px;
+    gap: 8px;
+  }
+
+  .tech-card-icon {
+    font-size: 24px;
+  }
+}
